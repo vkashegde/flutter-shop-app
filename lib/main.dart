@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:provydr/const/theme_data.dart';
+import 'package:provydr/provider/dark_theme_provider.dart';
 import 'package:provydr/sample1/app_state.dart';
 import 'package:provydr/sample1/my_home_page.dart';
+import 'package:provydr/screens/home_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,17 +15,41 @@ void main() {
   });
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  DarkThemeProvider themeChangeProvider = DarkThemeProvider();
+
+  void getCurrentAppTHeme() async {
+    themeChangeProvider.setDarkTheme =
+        await themeChangeProvider.darkThemePrefs.getTheme();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCurrentAppTHeme();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      home: MultiProvider(providers: [
+    return MultiProvider(
+      providers: [
         ChangeNotifierProvider(
-          create: (context) => Appstate(),
+          create: (context) => DarkThemeProvider(),
         )
-      ], child: MyHomePage()),
+      ],
+      child:
+          Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
+        return MaterialApp(
+          theme: Styles.themeData(themeProvider.getDarkTheme, context),
+          home: HomeScreen(),
+        );
+      }),
     );
   }
 }
