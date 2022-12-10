@@ -5,6 +5,7 @@ import 'package:provydr/const/theme_data.dart';
 import 'package:provydr/provider/dark_theme_provider.dart';
 import 'package:provydr/sample1/app_state.dart';
 import 'package:provydr/sample1/my_home_page.dart';
+import 'package:provydr/screens/bottom_bar.dart';
 import 'package:provydr/screens/home_screen.dart';
 
 void main() {
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           Consumer<DarkThemeProvider>(builder: (context, themeProvider, child) {
         return MaterialApp(
           theme: Styles.themeData(themeProvider.getDarkTheme, context),
-          home: HomeScreen(),
+          home: BottomBarScreen(),
         );
       }),
     );
