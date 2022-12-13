@@ -1,5 +1,7 @@
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
+import 'package:provydr/widgets/heart_button.dart';
 import 'package:provydr/widgets/price_widget.dart';
 import 'package:provydr/widgets/text_widget.dart';
 
@@ -35,11 +37,18 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      'https://i.ibb.co/F0s3FHQ/Apricots.png',
-                      height: size.width * 0.22,
-                      fit: BoxFit.fill,
-                    ),
+                    FancyShimmerImage(
+                        imageUrl: 'https://i.ibb.co/F0s3FHQ/Apricots.png',
+                        height: size.width * 0.22,
+                        width: size.width * 0.22,
+                        boxFit: BoxFit.fill,
+                        errorWidget: Image.network(
+                            'https://i0.wp.com/www.dobitaobyte.com.br/wp-content/uploads/2016/02/no_image.png?ssl=1')),
+                    // Image.network(
+                    //   'https://i.ibb.co/F0s3FHQ/Apricots.png',
+                    //   height: size.width * 0.22,
+                    //   fit: BoxFit.fill,
+                    // ),
                     Column(
                       children: [
                         TextWidget(
@@ -63,23 +72,19 @@ class _OnSaleWidgetState extends State<OnSaleWidget> {
                                 color: color,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                print('heart');
-                              },
-                              child: Icon(
-                                IconlyLight.heart,
-                                size: 22,
-                                color: color,
-                              ),
-                            )
+                            HeartButton()
                           ],
                         )
                       ],
                     )
                   ],
                 ),
-                PriceWidget(),
+                PriceWidget(
+                  isOnSale: true,
+                  price: 5.99,
+                  salePrice: 2.99,
+                  textPrice: '1',
+                ),
                 const SizedBox(
                   height: 5,
                 ),
