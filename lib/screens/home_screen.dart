@@ -2,6 +2,7 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:provider/provider.dart';
+import 'package:provydr/inner_screens/feeds_screen.dart';
 import 'package:provydr/inner_screens/on_sale_screen.dart';
 import 'package:provydr/provider/dark_theme_provider.dart';
 import 'package:provydr/services/utils.dart';
@@ -115,7 +116,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                     //const Spacer(),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, FeedsScreen.routeName);
+                        },
                         child: TextWidget(
                             text: 'Browse All',
                             color: Colors.blue,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:provydr/const/theme_data.dart';
+import 'package:provydr/inner_screens/feeds_screen.dart';
 import 'package:provydr/inner_screens/on_sale_screen.dart';
 import 'package:provydr/provider/dark_theme_provider.dart';
 import 'package:provydr/sample1/app_state.dart';
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> {
           home: BottomBarScreen(),
           routes: {
             OnSaleScreen.routeName: (context) => const OnSaleScreen(),
+            FeedsScreen.routeName: (context) => const FeedsScreen()
           },
         );
       }),
